@@ -1,62 +1,15 @@
-(function() {
-  'use strict';
+CategoriesController.$inject = ['categories'];
+function CategoriesController(categories) {
+  var ctrl = this;
+  console.log('Categories data received:', categories);
   
-  angular.module('MenuApp')
-  .config(RoutesConfig);
+  // Ensure categories is always an array
+  ctrl.categories = categories || [];
   
-  RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
-  function RoutesConfig($stateProvider, $urlRouterProvider) {
-    
-    // Redirect to home page if no other URL matches
-    $urlRouterProvider.otherwise('/');
-    
-    // Set up UI states
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'templates/home.template.html'
-      })
-      .state('categories', {
-        url: '/categories',
-        templateUrl: 'templates/categories.template.html',
-        controller: 'CategoriesController as categoriesCtrl',
-        resolve: {
-          categories: ['MenuDataService', function(MenuDataService) {
-            return MenuDataService.getAllCategories();
-          }]
-        }
-      })
-      .state('items', {
-        url: '/items/{categoryShortName}',
-        templateUrl: 'templates/items.template.html',
-        controller: 'ItemsController as itemsCtrl',
-        resolve: {
-          items: ['$stateParams', 'MenuDataService', 
-                  function($stateParams, MenuDataService) {
-            return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
-          }]
-        }
-      });
+  // If the API returns an object, convert it to array
+  if (categories && !Array.isArray(categories)) {
+    ctrl.categories = Object.keys(categories).map(function(key) {
+      return categories[key];
+    });
   }
-  
-  // Categories Controller
-  angular.module('MenuApp')
-  .controller('CategoriesController', CategoriesController);
-  
-  CategoriesController.$inject = ['categories'];
-  function CategoriesController(categories) {
-    var ctrl = this;
-    ctrl.categories = categories;
-  }
-  
-  // Items Controller
-  angular.module('MenuApp')
-  .controller('ItemsController', ItemsController);
-  
-  ItemsController.$inject = ['items'];
-  function ItemsController(items) {
-    var ctrl = this;
-    ctrl.items = items.menu_items;
-    ctrl.category = items.category;
-  }
-})();
+}
