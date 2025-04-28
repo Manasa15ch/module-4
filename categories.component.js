@@ -16,5 +16,11 @@
     $ctrl.$onInit = function() {
       console.log('Categories in component:', $ctrl.categories);
     };
+    
+    $ctrl.$onChanges = function(changes) {
+      if (changes.categories) {
+        console.log('Categories changed:', $ctrl.categories);
+      }
+    };
   }
 })();
