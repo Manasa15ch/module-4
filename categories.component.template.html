@@ -1,0 +1,11 @@
+<div class="categories">
+  <h3>Menu Categories</h3>
+  <div ng-if="!$ctrl.categories">Loading categories...</div>
+  <ul class="list-group" ng-if="$ctrl.categories">
+    <li class="list-group-item" ng-repeat="category in $ctrl.categories">
+      <a ui-sref="items({categoryShortName: category.short_name})">
+        {{ category.name }} ({{ category.short_name }})
+      </a>
+    </li>
+  </ul>
+</div>
