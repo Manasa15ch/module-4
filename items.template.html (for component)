@@ -1,7 +1,0 @@
-<ul class="list-group">
-  <li class="list-group-item" ng-repeat="item in $ctrl.items">
-    <h3>{{ item.name }} ({{ item.short_name }})</h3>
-    <p>{{ item.description }}</p>
-    <p><em>Price: {{ item.price_small || item.price_large }}</em></p>
-  </li>
-</ul>
