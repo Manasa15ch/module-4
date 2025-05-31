@@ -1,4 +1,6 @@
-<div class="items">
-  <h2>Menu Items for Category: {{itemsCtrl.category.name}}</h2>
-  <items items="itemsCtrl.items"></items>
-</div>
+<h2>Items</h2>
+<ul>
+  <li ng-repeat="item in $ctrl.items.menu_items">
+    {{ item.name }} - {{ item.description }}
+  </li>
+</ul>
