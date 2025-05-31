@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="MenuApp">
+<html lang="en" ng-app="MenuApp">
 <head>
-  <meta charset="utf-8">
-  <title>Restaurant Menu App</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="https://unpkg.com/@uirouter/angularjs@1.0.30/release/angular-ui-router.min.js"></script>
-  
-  <!-- Application Files -->
+  <meta charset="UTF-8">
+  <title>Restaurant Menu</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.29/angular-ui-router.min.js"></script>
+
+  <!-- Your JS files -->
   <script src="menuapp.module.js"></script>
   <script src="data.module.js"></script>
   <script src="menudata.service.js"></script>
@@ -16,9 +15,6 @@
   <script src="routes.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Restaurant Menu</h1>
-    <ui-view></ui-view>
-  </div>
+  <div ui-view></div>
 </body>
 </html>
